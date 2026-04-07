@@ -125,11 +125,6 @@
           <input type="tel" id="phone" required />
         </div>
 
-        <div class="form-group">
-          <label>Enter OTP (6 digits)</label>
-          <input type="text" id="otp" maxlength="6" required />
-        </div>
-
         <button type="submit">Sign In</button>
         <p class="error" id="errorMsg"></p>
       </form>
@@ -168,12 +163,6 @@
 
           if (phone.length < 10 || isNaN(phone)) {
             errorMsg.textContent = "Enter a valid phone number.";
-            return;
-          }
-
-          // OTP validation (STRICT 6 DIGITS)
-          if (!/^\d{6}$/.test(otp)) {
-            errorMsg.textContent = "OTP must be exactly 6 digits.";
             return;
           }
 
