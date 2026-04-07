@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Medical Care with AI - Login</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <style>
+      /* Reset */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Segoe UI", sans-serif;
+      }
+
+      /* Background */
+      body {
+        height: 100vh;
+        background:
+          linear-gradient(rgba(0, 123, 255, 0.7), rgba(0, 200, 150, 0.7)),
+          url("https://images.unsplash.com/photo-1580281657527-47e7d3b57c17");
+        background-size: cover;
+        background-position: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      /* Form Container */
+      .container {
+        background: rgba(255, 255, 255, 0.95);
+        padding: 30px;
+        border-radius: 12px;
+        width: 350px;
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+      }
+
+      .container h2 {
+        text-align: center;
+        margin-bottom: 20px;
+        color: #0077b6;
+      }
+
+      /* Input Fields */
+      .form-group {
+        margin-bottom: 15px;
+      }
+
+      label {
+        display: block;
+        margin-bottom: 5px;
+        font-weight: bold;
+        font-size: 14px;
+      }
+
+      input {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+        transition: 0.3s;
+      }
+
+      input:focus {
+        border-color: #00b4d8;
+        outline: none;
+        box-shadow: 0 0 5px rgba(0, 180, 216, 0.5);
+      }
+
+      /* Button */
+      button {
+        width: 100%;
+        padding: 12px;
+        background: #00b4d8;
+        border: none;
+        color: white;
+        font-size: 16px;
+        border-radius: 6px;
+        cursor: pointer;
+        transition: 0.3s;
+      }
+
+      button:hover {
+        background: #0077b6;
+      }
+
+      /* Error Message */
+      .error {
+        color: red;
+        font-size: 13px;
+        margin-top: 5px;
+      }
+
+      /* Footer text */
+      .footer {
+        text-align: center;
+        margin-top: 10px;
+        font-size: 13px;
+        color: #555;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <h2>Medical Care with AI</h2>
+
+      <form id="loginForm">
+        <div class="form-group">
+          <label>Email Address</label>
+          <input type="email" id="email" required />
+        </div>
+
+        <div class="form-group">
+          <label>Contact Phone Number</label>
+          <input type="tel" id="phone" required />
+        </div>
+
+        <div class="form-group">
+          <label>Username</label>
+          <input type="text" id="username" required />
+        </div>
+
+        <div class="form-group">
+          <label>Password</label>
+          <input type="password" id="password" required />
+        </div>
+
+        <button type="submit">Login</button>
+        <p class="error" id="errorMsg"></p>
+      </form>
+
+      <div class="footer">AI-powered healthcare access</div>
+    </div>
+
+    <script>
+      document
+        .getElementById("loginForm")
+        .addEventListener("submit", function (e) {
+          e.preventDefault();
+
+          let email = document.getElementById("email").value.trim();
+          let phone = document.getElementById("phone").value.trim();
+          let username = document.getElementById("username").value.trim();
+          let password = document.getElementById("password").value.trim();
+
+          let errorMsg = document.getElementById("errorMsg");
+
+          // Basic validation
+          if (!email.includes("@")) {
+            errorMsg.textContent = "Enter a valid email address.";
+            return;
+          }
+
+          if (phone.length < 10 || isNaN(phone)) {
+            errorMsg.textContent = "Enter a valid phone number.";
+            return;
+          }
+
+          if (username.length < 3) {
+            errorMsg.textContent = "Username must be at least 3 characters.";
+            return;
+          }
+
+          if (password.length < 6) {
+            errorMsg.textContent = "Password must be at least 6 characters.";
+            return;
+          }
+
+          // ... existing validation code ...
+
+          errorMsg.style.color = "green";
+          errorMsg.textContent = "Login successful!";
+
+          // ADD THIS LINE BELOW:
+          setTimeout(function () {
+            window.location.href = "index.html";
+          }, 1000); // This waits 1 second so the user can see the "Success" message
+        });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Medical Care with AI - Sign In</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Segoe UI", sans-serif;
+      }
+
+      body {
+        height: 100vh;
+        background:
+          linear-gradient(rgba(0, 150, 200, 0.7), rgba(0, 200, 150, 0.7)),
+          url("https://images.unsplash.com/photo-1576091160550-2173dba999ef");
+        background-size: cover;
+        background-position: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .container {
+        background: rgba(255, 255, 255, 0.95);
+        padding: 30px;
+        border-radius: 12px;
+        width: 360px;
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+      }
+
+      h2 {
+        text-align: center;
+        margin-bottom: 20px;
+        color: #0077b6;
+      }
+
+      .form-group {
+        margin-bottom: 15px;
+      }
+
+      label {
+        font-weight: bold;
+        font-size: 14px;
+        display: block;
+        margin-bottom: 5px;
+      }
+
+      input {
+        width: 100%;
+        padding: 10px;
+        border-radius: 6px;
+        border: 1px solid #ccc;
+        transition: 0.3s;
+      }
+
+      input:focus {
+        border-color: #00b4d8;
+        outline: none;
+        box-shadow: 0 0 5px rgba(0, 180, 216, 0.5);
+      }
+
+      button {
+        width: 100%;
+        padding: 12px;
+        background: #00b4d8;
+        border: none;
+        color: white;
+        font-size: 16px;
+        border-radius: 6px;
+        cursor: pointer;
+        transition: 0.3s;
+      }
+
+      button:hover {
+        background: #0077b6;
+      }
+
+      .error {
+        font-size: 13px;
+        margin-top: 8px;
+        color: red;
+        text-align: center;
+      }
+
+      .link {
+        text-align: center;
+        margin-top: 12px;
+        font-size: 14px;
+      }
+
+      .link a {
+        color: #0077b6;
+        text-decoration: none;
+        font-weight: bold;
+      }
+
+      .link a:hover {
+        text-decoration: underline;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <h2>Sign In - Medical AI</h2>
+
+      <form id="signinForm">
+        <div class="form-group">
+          <label>Username</label>
+          <input type="text" id="username" required />
+        </div>
+
+        <div class="form-group">
+          <label>Email Address</label>
+          <input type="email" id="email" required />
+        </div>
+
+        <div class="form-group">
+          <label>Contact Phone Number</label>
+          <input type="tel" id="phone" required />
+        </div>
+
+        <div class="form-group">
+          <label>Enter OTP (6 digits)</label>
+          <input type="text" id="otp" maxlength="6" required />
+        </div>
+
+        <button type="submit">Sign In</button>
+        <p class="error" id="errorMsg"></p>
+      </form>
+
+      <div class="link">
+        Already have an account??
+        <a href="login.html">Login here</a>
+      </div>
+    </div>
+
+    <script>
+      document
+        .getElementById("signinForm")
+        .addEventListener("submit", function (e) {
+          e.preventDefault();
+
+          let username = document.getElementById("username").value.trim();
+          let email = document.getElementById("email").value.trim();
+          let phone = document.getElementById("phone").value.trim();
+          let otp = document.getElementById("otp").value.trim();
+
+          let errorMsg = document.getElementById("errorMsg");
+
+          // Reset
+          errorMsg.style.color = "red";
+
+          if (username.length < 3) {
+            errorMsg.textContent = "Username must be at least 3 characters.";
+            return;
+          }
+
+          if (!email.includes("@")) {
+            errorMsg.textContent = "Enter a valid email address.";
+            return;
+          }
+
+          if (phone.length < 10 || isNaN(phone)) {
+            errorMsg.textContent = "Enter a valid phone number.";
+            return;
+          }
+
+          // OTP validation (STRICT 6 DIGITS)
+          if (!/^\d{6}$/.test(otp)) {
+            errorMsg.textContent = "OTP must be exactly 6 digits.";
+            return;
+          }
+
+          // Success
+          errorMsg.style.color = "green";
+          errorMsg.textContent = "Sign-in successful!";
+
+          setTimeout(function () {
+            window.location.href = "index.html";
+          }, 1000);
+        });
+    </script>
+  </body>
+</html>
