@@ -125,6 +125,11 @@
           <input type="tel" id="phone" required />
         </div>
 
+        <div class="form-group">
+          <label>Create Password (6 digits)</label>
+          <input type="text" id="password" maxlength="6" required />
+        </div>
+
         <button type="submit">Sign In</button>
         <p class="error" id="errorMsg"></p>
       </form>
@@ -144,7 +149,7 @@
           let username = document.getElementById("username").value.trim();
           let email = document.getElementById("email").value.trim();
           let phone = document.getElementById("phone").value.trim();
-          let otp = document.getElementById("otp").value.trim();
+          let password = document.getElementById("password").value.trim();
 
           let errorMsg = document.getElementById("errorMsg");
 
@@ -166,9 +171,15 @@
             return;
           }
 
+          //  create password (greater than 6 characters and must be 6 digits)
+          if (!/^\d{6}$/.test(password)) {
+            errorMsg.textContent = "Password must be exactly 6 digits.";
+            return;
+          }
+
           // Success
           errorMsg.style.color = "green";
-          errorMsg.textContent = "Sign-in successful!";
+          errorMsg.textContent = "Sign-in successful! Redirecting...";
 
           setTimeout(function () {
             window.location.href = "index.html";
